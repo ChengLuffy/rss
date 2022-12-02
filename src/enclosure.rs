@@ -33,6 +33,8 @@ pub struct Enclosure {
     pub url: String,
     /// sparkle:version
     pub version: String,
+    /// sparkle:shortVersionString
+    pub short_version: String,
     /// The length of the enclosure in bytes.
     pub length: String,
     /// The MIME type of the enclosure.
@@ -157,7 +159,16 @@ impl Enclosure {
                     enclosure.mime_type = attr.unescape_and_decode_value(reader)?;
                 }
                 b"sparkle:version" => {
-                    enclosure.version = attr.unescape_and_decode_value(reader)?;
+                    let version = attr.unescape_and_decode_value(reader)?;
+                    if version.contains(".") {
+                        enclosure.version = version;
+                    }
+                }
+                b"sparkle:shortVersionString" => {
+                    let version = attr.unescape_and_decode_value(reader)?;
+                    if version.contains(".") {
+                        enclosure.version = version;
+                    }
                 }
                 _ => {}
             }
