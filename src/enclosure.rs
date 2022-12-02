@@ -31,6 +31,8 @@ use crate::toxml::ToXml;
 pub struct Enclosure {
     /// The URL of the enclosure.
     pub url: String,
+    /// sparkle:version
+    pub version: String,
     /// The length of the enclosure in bytes.
     pub length: String,
     /// The MIME type of the enclosure.
@@ -153,6 +155,9 @@ impl Enclosure {
                 }
                 b"type" => {
                     enclosure.mime_type = attr.unescape_and_decode_value(reader)?;
+                }
+                b"sparkle:version" => {
+                    enclosure.version = attr.unescape_and_decode_value(reader)?;
                 }
                 _ => {}
             }
