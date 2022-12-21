@@ -606,6 +606,28 @@ impl Item {
     {
         self.extensions = extensions.into();
     }
+
+    pub fn version(&self) -> Option<&str> {
+        self.version.as_deref()
+    }
+
+    pub fn set_version<V>(&mut self, version: V)
+    where
+        V: Into<Option<String>>,
+    {
+        self.version = version.into();
+    }
+
+    pub fn short_version(&self) -> Option<&str> {
+        self.short_version.as_deref()
+    }
+
+    pub fn set_short_version<V>(&mut self, short_version: V)
+    where
+        V: Into<Option<String>>,
+    {
+        self.short_version = short_version.into();
+    }
 }
 
 impl Item {
