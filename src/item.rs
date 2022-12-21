@@ -74,6 +74,10 @@ pub struct Item {
     pub itunes_ext: Option<itunes::ITunesItemExtension>,
     /// The Dublin Core extension for the item.
     pub dublin_core_ext: Option<dublincore::DublinCoreExtension>,
+    /// Sparkle Version
+    pub version: Option<String>,
+    /// Sparkle Short Version
+    pub short_version: Option<String>
 }
 
 impl Item {
@@ -640,6 +644,8 @@ impl Item {
                     b"comments" => item.comments = element_text(reader)?,
                     b"pubDate" => item.pub_date = element_text(reader)?,
                     b"content:encoded" => item.content = element_text(reader)?,
+                    b"sparkle:version" => item.version = element_text(reader)?,
+                    b"sparkle:shortVersionString" => item.short_version = element_text(reader)?,
                     n => {
                         if let Some((ns, name)) = extension_name(n) {
                             parse_extension(
