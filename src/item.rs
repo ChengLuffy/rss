@@ -607,10 +607,31 @@ impl Item {
         self.extensions = extensions.into();
     }
 
+    /// Return the version of this item.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rss::Item;
+    ///
+    /// let mut item = Item::default();
+    /// item.set_version("Item Version".to_string());
+    /// assert_eq!(item.version(), Some("Item Version"));
+    /// ```
     pub fn version(&self) -> Option<&str> {
         self.version.as_deref()
     }
 
+    /// Set the version of this item.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rss::Item;
+    ///
+    /// let mut item = Item::default();
+    /// item.set_version("Item Version".to_string());
+    /// ```
     pub fn set_version<V>(&mut self, version: V)
     where
         V: Into<Option<String>>,
@@ -618,10 +639,31 @@ impl Item {
         self.version = version.into();
     }
 
+    /// Return the short_version of this item.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rss::Item;
+    ///
+    /// let mut item = Item::default();
+    /// item.set_short_version("Item Short Version".to_string());
+    /// assert_eq!(item.short_version(), Some("Item Short Version"));
+    /// ```
     pub fn short_version(&self) -> Option<&str> {
         self.short_version.as_deref()
     }
 
+    /// Set the short_version of this item.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// use rss::Item;
+    ///
+    /// let mut item = Item::default();
+    /// item.set_short_version("Item Short Version".to_string());
+    /// ```
     pub fn set_short_version<V>(&mut self, short_version: V)
     where
         V: Into<Option<String>>,
